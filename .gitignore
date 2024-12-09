@@ -1,0 +1,23 @@
+# Ignore all files in data directory
+data/
+*.db
+
+# Ignore all log files
+logs/
+*.log
+*.tmp
+
+# Ignore macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Ignore system-specific files
+*.swp
+*.swo
+*~
+
+# Ignore any credentials or sensitive data
+*.env
+*_credentials.json

@@ -16,7 +16,7 @@ early_error() {
 # PRINT BANNER
 echo "
  █ █    DiskAtlas
-█ █ █   Version:  1.0.0
+█ █ █   Version:  1.0.1
    █ █  Author:   Benjamin Pequet
         Github:   https://github.com/pequet/diskatlas/
 "
@@ -68,6 +68,34 @@ show_help() {
     exit 0
 }
 
+# Convert size to bytes and validate format
+validate_size() {
+    local size="$1"
+    # Remove any leading + if present
+    size="${size#+}"
+    
+    # Extract number and suffix
+    local number="${size%[KkMmGg]}"
+    local suffix="${size#$number}"
+    
+    # Validate number is numeric
+    if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+        early_error "Invalid size format. Number must be a positive integer: $size"
+    fi
+    
+    # Convert to bytes based on suffix
+    case "$(echo "$suffix" | tr '[:upper:]' '[:lower:]')" in
+        "k") number=$((number * 1024)) ;;
+        "m") number=$((number * 1024 * 1024)) ;;
+        "g") number=$((number * 1024 * 1024 * 1024)) ;;
+        "") ;;  # already in bytes
+        *) early_error "Invalid size suffix. Use K, M, or G: $size" ;;
+    esac
+    
+    # Return size in bytes with + prefix for find
+    echo "+${number}c"
+}
+
 # Parse command-line arguments
 DRIVE_PATH=""
 DRIVE_ID=""
@@ -83,7 +111,10 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         --min-size)
-            MIN_FILE_SIZE="$2"
+            if [ -z "${2:-}" ]; then
+                early_error "Missing value for --min-size parameter"
+            fi
+            MIN_FILE_SIZE=$(validate_size "$2")
             shift 2
             ;;
         --limit)

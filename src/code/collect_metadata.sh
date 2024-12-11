@@ -23,7 +23,7 @@ build_find_command() {
     done
     
     # Add type and size filters
-    command+=" -type f -size +${min_size}"
+    command+=" -type f -size $min_size"
     
     echo "$command"
 }
@@ -31,7 +31,7 @@ build_find_command() {
 # Initialize the file count variable
 declare -i file_count=0
 declare -i files_processed=0
-declare -i files_skipped_permissions=0
+declare -i files_skipped_size=0
 declare -i files_skipped_perm=0
 declare -i files_skipped_other=0
 
@@ -157,7 +157,7 @@ collect_metadata() {
     local current_file=0
 
     files_skipped_size=0
-    files_skipped_permissions=0
+    files_skipped_perm=0
     files_skipped_other=0
 
     while IFS= read -r file; do
@@ -179,7 +179,7 @@ collect_metadata() {
         
         if [ ! -r "$file" ]; then
             log_message "SKIP: No read permission: $file"
-            ((files_skipped_permissions++))
+            ((files_skipped_perm++))
             continue
         fi
         

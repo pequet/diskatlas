@@ -143,7 +143,7 @@ collect_metadata() {
     # Build and execute the find command
     local find_command
     find_command=$(build_find_command "$drive_path" "$min_size")
-    # log_message "Find command: $find_command"
+    log_message "🚧 Find command: $find_command"
     
     # Get total files before processing
     local total_files

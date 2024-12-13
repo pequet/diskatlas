@@ -2,15 +2,16 @@ diskatlas/
 ├── data
 ├── logs
 ├── src
-│   ├── code
-│   │   ├── collect_metadata.sh
-│   │   ├── config.sh
-│   │   ├── database.sh
-│   │   ├── main.sh
-│   │   └── utils.sh
-│   └── config
-│       ├── exclusions.conf
-│       └── extensions.conf
+│   └── scan
+│       ├── code
+│       │   ├── collect_metadata.sh
+│       │   ├── config.sh
+│       │   ├── database.sh
+│       │   ├── main.sh
+│       │   └── utils.sh
+│       └── config
+│           ├── exclusions.conf
+│           └── extensions.conf
 ├── .gitignore
 └── README.md
-Generated on: 2024-12-09 01:30:09
+Generated on: 2024-12-13 00:16:55

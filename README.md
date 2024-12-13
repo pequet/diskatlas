@@ -28,7 +28,7 @@ Edit `src/config/exclusions.conf` to specify directories to exclude.
 Run the script:
 
 ```bash
-./src/code/main.sh --drive /path/to/drive --id DRIVE_ID [--min-size SIZE] [--limit N]
+./src/scan/code/main.sh --drive /path/to/drive --id DRIVE_ID [--min-size SIZE] [--limit N]
 ```
 
 - Replace /path/to/drive with the path of the drive you want to scan.
@@ -63,3 +63,8 @@ SELECT * FROM your_table_name;
 
 This project is provided for educational purposes only. No guarantee that it will work as intended.
 
+## Support
+
+You can buy me a coffee at https://www.buymeacoffee.com/pequet
+
+🚵

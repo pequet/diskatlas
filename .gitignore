@@ -21,3 +21,6 @@ logs/
 # Ignore any credentials or sensitive data
 *.env
 *_credentials.json
+
+# Ignore any temporary files
+MANIFEST.md

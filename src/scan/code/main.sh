@@ -16,14 +16,19 @@ early_error() {
 # PRINT BANNER
 echo "
  █ █    DiskAtlas
-█ █ █   Version:  1.0.1
+█ █ █   Version:  1.0.2
    █ █  Author:   Benjamin Pequet
         Github:   https://github.com/pequet/diskatlas/
 "
 
+# Changelog:
+# 1.0.0 - Initial release
+# 1.0.1 - Fixed bug in file size validation and file count
+# 1.0.2 - Restructured scanning code into src/scan/code/
+
 # Determine the directory where this script is located
 SCRIPT_DIR=$(dirname "$0")
-PROJECT_ROOT="$SCRIPT_DIR/../.."
+PROJECT_ROOT="$SCRIPT_DIR/../../.."
 
 # Create necessary directories if they don't exist
 mkdir -p "$PROJECT_ROOT/data" || early_error "Failed to create data directory"
@@ -39,7 +44,7 @@ source "$SCRIPT_DIR/utils.sh" || early_error "Failed to source utils.sh"
 LOG_FILE="$PROJECT_ROOT/logs/process.log"
 touch "$LOG_FILE" || exit_on_error "Failed to create/access log file"
 
-log_message "⛰️ Starting DiskAtlas script"
+log_message "🚵 Starting DiskAtlas script"
 log_message "Command line parameters: $*"
 
 # Set up error trap after utils.sh is sourced
